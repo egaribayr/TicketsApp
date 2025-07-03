@@ -19,6 +19,7 @@ TicketsApp is a Spring Boot-based ticket management system designed to help team
 - API documentation and testing via Swagger UI
 - Monitoring with Grafana (via Docker Compose)
 - Centralized log aggregation with Loki (logs from the application are fed to Grafana via Loki)
+- Code formatting enforced with Spotless
 
 ## API Endpoints
 
