@@ -1,8 +1,5 @@
 package com.tickets.model;
 
-import java.util.Date;
-import java.util.UUID;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -11,6 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.util.Date;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,17 +23,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TicketHistory {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
 
-    @Enumerated(EnumType.STRING)
-    private ChangeType type;
+  @Enumerated(EnumType.STRING)
+  private ChangeType type;
 
-    private Date updateDate;
+  private Date updateDate;
 
-    @ManyToOne
-    private User updatedBy;
+  @ManyToOne private User updatedBy;
 
-    private String text;
+  private String text;
 }

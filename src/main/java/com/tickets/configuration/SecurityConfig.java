@@ -6,21 +6,19 @@ package com.tickets.configuration;
 // import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 // import org.springframework.security.web.SecurityFilterChain;
 
-
-
-//@Configuration
-//@EnableWebSecurity
+// @Configuration
+// @EnableWebSecurity
 public class SecurityConfig {
 
-    // @Bean
-    // public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    //     http.authorizeHttpRequests(authorizeRequests ->
-    //             authorizeRequests
-    //                     .requestMatchers("/api/**").permitAll()
-    //                     .requestMatchers("/swagger-ui/**").permitAll()
-    //                     .requestMatchers("/v3/api-docs/**").permitAll()
-    //                     .anyRequest().authenticated()
-    //     );
-    //     return http.build();
-    // }
+  // @Bean
+  // public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+  //     http.authorizeHttpRequests(authorizeRequests ->
+  //             authorizeRequests
+  //                     .requestMatchers("/api/**").permitAll()
+  //                     .requestMatchers("/swagger-ui/**").permitAll()
+  //                     .requestMatchers("/v3/api-docs/**").permitAll()
+  //                     .anyRequest().authenticated()
+  //     );
+  //     return http.build();
+  // }
 }

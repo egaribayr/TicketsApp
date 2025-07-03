@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TicketCreationDto {
 
-    private String subject;
-    private String description;
+  private String subject;
+  private String description;
 }

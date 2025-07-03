@@ -20,6 +20,27 @@ configurations {
 	}
 }
 
+spotless {
+	java {
+		// Target all Java files in your source sets
+		target 'src/*/java/**/*.java'
+
+		// Use Google Java Format (ensure compatibility with Java 21)
+		googleJavaFormat()
+
+		// Optional: Remove unused imports
+		// Note: removeUnusedImports() might have had issues with Java 21 in older Spotless versions.
+		// Ensure you are using a Spotless version that addresses these.
+		removeUnusedImports()
+
+		// Optional: Trim trailing whitespace
+		trimTrailingWhitespace()
+
+		// Optional: Define line endings
+		endWithNewline()
+	}
+}
+
 repositories {
 	mavenCentral()
 }
