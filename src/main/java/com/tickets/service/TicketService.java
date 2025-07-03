@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -61,6 +62,24 @@ public class TicketService {
     this.ticketRepository = ticketRepository;
     this.ticketHistoryRepository = ticketHistoryRepository;
     this.ticketMapper = ticketMapper;
+  }
+
+  /**
+   * Retrieves a list of tickets.
+   *
+   * @param id (optional) the assigned user ID to filter by; if blank, returns all tickets
+   * @return list of ticket DTOs
+   */
+  public List<TicketDto> getTikets(String id) {
+
+    List<Ticket> tickets;
+    if (StringUtils.isBlank(id)) {
+      tickets = ticketRepository.findAll();
+    } else {
+      tickets = ticketRepository.findAllByAssignedTo_Id(UUID.fromString(id));
+    }
+
+    return tickets.stream().map(ticketMapper::map).collect(Collectors.toList());
   }
 
   /**

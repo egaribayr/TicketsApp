@@ -24,10 +24,12 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * REST controller for managing ticket operations.
  *
- * <p>Provides endpoints for creating, updating, retrieving ticket history, and bulk importing
- * tickets.
+ * <p>Provides endpoints for creating, updating, retrieving, listing ticket history, and bulk
+ * importing tickets.
  *
  * <ul>
+ *   <li><b>GET /api/tickets</b>: Retrieve a list of tickets, optionally filtered by assigned user
+ *       ID
  *   <li><b>POST /api/tickets</b>: Create a new ticket
  *   <li><b>PUT /api/tickets/{id}</b>: Update an existing ticket
  *   <li><b>GET /api/tickets/{id}/history</b>: Retrieve ticket history, optionally filtered by
@@ -51,6 +53,17 @@ public class TicketController {
    */
   public TicketController(TicketService ticketService) {
     this.ticketService = ticketService;
+  }
+
+  /**
+   * Retrieves a list of tickets.
+   *
+   * @param id (optional) the ticket ID to filter by; if null, returns all tickets
+   * @return list of ticket DTOs
+   */
+  @GetMapping
+  public List<TicketDto> getTickets(@RequestParam(required = false) String id) {
+    return ticketService.getTikets(id);
   }
 
   /**

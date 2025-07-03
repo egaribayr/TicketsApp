@@ -6,8 +6,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.Date;
 import java.util.List;
@@ -32,11 +32,11 @@ public class Ticket {
   private String subject;
   private String description;
 
-  @OneToOne private User createdBy;
+  @ManyToOne private User createdBy;
 
-  @OneToOne private User modifiedBy;
+  @ManyToOne private User modifiedBy;
 
-  @OneToOne private User assignedTo;
+  @ManyToOne private User assignedTo;
 
   private Date createdAt;
   private Date modifiedAt;
