@@ -17,6 +17,7 @@ TicketsApp is a Spring Boot-based ticket management system designed to help team
 |--------|----------------------------------|------------------------------------|
 | POST   | `/api/tickets`                  | Create a new ticket                |
 | PUT    | `/api/tickets/{id}`             | Update an existing ticket          |
+| GET    | `/api/tickets`                  | Retrieves a list of tickets (optionally filter by the assigned to user id)    |
 | GET    | `/api/tickets/{id}/history`     | Get ticket history (optionally filter by change type) |
 | POST   | `/api/tickets/bulkimport`       | Bulk import tickets from CSV file  |
 

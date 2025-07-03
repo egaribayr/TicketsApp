@@ -58,12 +58,13 @@ public class TicketController {
   /**
    * Retrieves a list of tickets.
    *
-   * @param id (optional) the ticket ID to filter by; if null, returns all tickets
+   * @param assignedToUserId (optional) the assigned user ID to filter by; if null, returns all
+   *     tickets
    * @return list of ticket DTOs
    */
   @GetMapping
-  public List<TicketDto> getTickets(@RequestParam(required = false) String id) {
-    return ticketService.getTikets(id);
+  public List<TicketDto> getTickets(@RequestParam(required = false) String assignedToUserId) {
+    return ticketService.getTikets(assignedToUserId);
   }
 
   /**

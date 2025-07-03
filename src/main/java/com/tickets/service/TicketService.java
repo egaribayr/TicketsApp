@@ -67,16 +67,17 @@ public class TicketService {
   /**
    * Retrieves a list of tickets.
    *
-   * @param id (optional) the assigned user ID to filter by; if blank, returns all tickets
+   * @param assignedToUserId (optional) the assigned user ID to filter by; if blank, returns all
+   *     tickets
    * @return list of ticket DTOs
    */
-  public List<TicketDto> getTikets(String id) {
+  public List<TicketDto> getTikets(String assignedToUserId) {
 
     List<Ticket> tickets;
-    if (StringUtils.isBlank(id)) {
+    if (StringUtils.isBlank(assignedToUserId)) {
       tickets = ticketRepository.findAll();
     } else {
-      tickets = ticketRepository.findAllByAssignedTo_Id(UUID.fromString(id));
+      tickets = ticketRepository.findAllByAssignedTo_Id(UUID.fromString(assignedToUserId));
     }
 
     return tickets.stream().map(ticketMapper::map).collect(Collectors.toList());
