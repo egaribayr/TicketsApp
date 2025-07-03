@@ -71,4 +71,23 @@ public class TciketController {
     ticketController.bulkImport(file);
     verify(ticketService).importTickets(file);
   }
+
+  @Test
+  void testGetTickets_All() {
+    List<TicketDto> tickets = List.of(mock(TicketDto.class), mock(TicketDto.class));
+    when(ticketService.getTikets(null)).thenReturn(tickets);
+    List<TicketDto> result = ticketController.getTickets(null);
+    assertEquals(tickets, result);
+    verify(ticketService).getTikets(null);
+  }
+
+  @Test
+  void testGetTickets_ById() {
+    String id = "abc-123";
+    List<TicketDto> tickets = List.of(mock(TicketDto.class));
+    when(ticketService.getTikets(id)).thenReturn(tickets);
+    List<TicketDto> result = ticketController.getTickets(id);
+    assertEquals(tickets, result);
+    verify(ticketService).getTikets(id);
+  }
 }

@@ -133,4 +133,43 @@ public class TicketServiceTest {
     assertEquals(Status.NEW, tickets.get(0).getStatus());
     assertEquals(Status.CLOSED, tickets.get(1).getStatus());
   }
+
+  @Test
+  void testGetTikets_All() {
+    List<Ticket> tickets =
+        Arrays.asList(Ticket.builder().subject("A").build(), Ticket.builder().subject("B").build());
+    when(ticketRepository.findAll()).thenReturn(tickets);
+    when(ticketMapper.map(any(Ticket.class)))
+        .thenAnswer(
+            invocation -> {
+              Ticket t = invocation.getArgument(0);
+              TicketDto dto = new TicketDto();
+              dto.setSubject(t.getSubject());
+              return dto;
+            });
+    List<TicketDto> result = ticketService.getTikets("");
+    assertEquals(2, result.size());
+    assertEquals("A", result.get(0).getSubject());
+    assertEquals("B", result.get(1).getSubject());
+    verify(ticketRepository).findAll();
+  }
+
+  @Test
+  void testGetTikets_ByAssignedTo() {
+    String userId = UUID.randomUUID().toString();
+    List<Ticket> tickets = Collections.singletonList(Ticket.builder().subject("Assigned").build());
+    when(ticketRepository.findAllByAssignedTo_Id(UUID.fromString(userId))).thenReturn(tickets);
+    when(ticketMapper.map(any(Ticket.class)))
+        .thenAnswer(
+            invocation -> {
+              Ticket t = invocation.getArgument(0);
+              TicketDto dto = new TicketDto();
+              dto.setSubject(t.getSubject());
+              return dto;
+            });
+    List<TicketDto> result = ticketService.getTikets(userId);
+    assertEquals(1, result.size());
+    assertEquals("Assigned", result.get(0).getSubject());
+    verify(ticketRepository).findAllByAssignedTo_Id(UUID.fromString(userId));
+  }
 }
